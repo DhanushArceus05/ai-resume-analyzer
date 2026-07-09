@@ -1,195 +1,789 @@
-# AI Resume Analyzer
+# 🚀 AI Resume Analyzer
 
-A full-stack SaaS platform that analyzes resumes the way a recruiter and an
-Applicant Tracking System (ATS) both would — parsing the document, scoring
-it, matching it against a job description, rewriting weak sections, and
-generating tailored interview questions, all backed by Google's Gemini API
-where AI judgment is needed and deterministic rules everywhere else.
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?logo=node.js&logoColor=white)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+An AI-powered **Resume Analyzer SaaS Platform** that evaluates resumes from both a **Recruiter's** and an **Applicant Tracking System (ATS)** perspective.
+
+The application intelligently parses resumes, performs AI-powered resume analysis, calculates ATS compatibility scores, matches resumes against job descriptions, rewrites weak resume content, generates personalized interview questions, and exports professional PDF reports.
 
 ---
 
-## Features
+# 🌐 Live Demo
 
-- **Authentication** — JWT-based register/login, protected routes, session
-  persistence
-- **Resume Upload** — drag-and-drop or click-to-browse, PDF/DOCX only,
-  10 MB limit, animated progress
-- **Resume Parsing** — deterministic extraction of basic info, sections,
-  skills, experience, education, projects, certifications, and metadata
-- **AI Resume Analysis** — Gemini-powered structured feedback (strengths,
-  weaknesses, suggestions) on the parsed resume
-- **ATS Score** — rule-based, explainable scoring against common ATS
-  heuristics (no AI involved — fully deterministic and auditable)
-- **Job Description Matching** — paste a JD and get a match score, matched
-  vs. missing skills, keyword overlap, and recommendations (deterministic)
-- **Resume Rewrite** — Gemini-generated improved summary/experience/project
-  lines, informed by the analysis, ATS score, and JD match
-- **Interview Question Generator** — Gemini-generated technical, project,
-  behavioral, and HR questions tailored to the full analysis pipeline
-- **Dashboard** — latest report at a glance, quick actions, workflow
-  progress, resume health summary
-- **Download PDF Report** — exports the full analysis pipeline as a
-  shareable PDF
+### Frontend
 
-## Architecture
+https://ai-resume-analyzer-version-one.vercel.app
 
-### Backend (Node.js / Express)
+### Backend API
+
+https://ai-resume-analyzer-e67b.onrender.com
+
+---
+
+# ✨ Features
+
+## Authentication
+
+- Secure User Registration
+- JWT Authentication
+- Login & Logout
+- Protected Routes
+- Session Persistence
+- User Data Isolation
+
+---
+
+## Resume Upload
+
+- Drag & Drop Upload
+- Click to Browse
+- PDF Support
+- DOCX Support
+- File Validation
+- Upload Progress Animation
+
+---
+
+## Resume Parsing
+
+Automatically extracts:
+
+- Personal Information
+- Professional Summary
+- Skills
+- Experience
+- Education
+- Projects
+- Certifications
+- Resume Metadata
+
+---
+
+## AI Resume Analysis
+
+Powered by **Google Gemini AI**
+
+Provides:
+
+- Resume Strengths
+- Resume Weaknesses
+- Improvement Suggestions
+- Overall Resume Quality
+- Recruiter-style Feedback
+
+---
+
+## ATS Score
+
+Deterministic ATS Engine
+
+Calculates:
+
+- ATS Compatibility Score
+- Keyword Optimization
+- Formatting Quality
+- Skill Coverage
+- Missing Keywords
+- Improvement Recommendations
+
+---
+
+## Job Description Matching
+
+Paste any Job Description and receive:
+
+- Match Percentage
+- Matching Skills
+- Missing Skills
+- Keyword Analysis
+- Personalized Recommendations
+
+---
+
+## Resume Rewrite
+
+AI-powered rewrite suggestions for:
+
+- Professional Summary
+- Experience
+- Projects
+- Resume Bullet Points
+
+---
+
+## Interview Question Generator
+
+Generates personalized:
+
+- Technical Questions
+- HR Questions
+- Behavioral Questions
+- Project-based Questions
+
+Based on:
+
+- Resume
+- ATS Analysis
+- JD Matching
+- AI Resume Analysis
+
+---
+
+## Dashboard
+
+- Resume Health Summary
+- Workflow Progress
+- Quick Actions
+- Report Management
+- Latest Analysis
+
+---
+
+## PDF Report
+
+Download a professional PDF report including:
+
+- AI Analysis
+- ATS Score
+- JD Match
+- Resume Rewrite
+- Interview Questions
+
+---
+
+# 🏗️ Architecture
+
+## Backend Architecture
 
 ```
-routes → middleware → controllers (thin only) → services → providers → utils
+routes
+   │
+middleware
+   │
+controllers
+   │
+services
+   │
+providers
+   │
+utils
 ```
 
-- Controllers contain **no business logic** — they validate the request
-  shape and delegate.
-- All business logic lives in `services/`, one folder per feature
-  (`ai`, `ats`, `jd`, `rewrite`, `interview`, `parser`, `storage`).
-- Each service folder exposes a single `index.js` entry point; controllers
-  never reach into a service's internal files directly.
-- `services/ai/providers/gemini.provider.js` is the **only** file that talks
-  to Google's Gemini API directly — every AI-backed feature (Analysis,
-  Rewrite, Interview Questions) shares it. Swapping AI providers later means
-  adding a new file in `providers/`, not touching the services that use it.
-- ATS Engine, JD Matching, and Resume Parsing are **fully deterministic** —
-  no Gemini calls, no non-determinism, fully explainable output.
+### Design Principles
 
-### Frontend (React / TypeScript / Vite)
+- Thin Controllers (No Business Logic)
+- Service-Oriented Architecture
+- Single Responsibility Principle
+- Modular AI Provider Layer
+- Deterministic ATS Engine
+- Explainable JD Matching
+- Secure JWT Authentication
+
+---
+
+## Frontend Architecture
 
 ```
-pages → components → services → hooks → types → utils
+pages
+   │
+components
+   │
+services
+   │
+hooks
+   │
+types
+   │
+utils
 ```
 
-- One type file per feature: `upload.types.ts`, `ai.types.ts`,
-  `ats.types.ts`, `jd.types.ts`, `rewrite.types.ts`, `interview.types.ts`,
-  `report.types.ts`
-- `services/apiClient.ts` centralizes the Axios instance, JWT attachment,
-  and 401 handling — feature services build on top of it
-- Tailwind CSS for styling, Framer Motion for animation, React Router for
-  navigation, jsPDF for the downloadable report
+### Frontend Highlights
 
-### Tech stack
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Router
+- Axios API Layer
+- jsPDF Report Generator
 
-| Layer | Technology |
-|---|---|
-| Frontend | React 19, TypeScript, Vite, Tailwind CSS, React Router, Axios, Framer Motion, jsPDF |
-| Backend | Node.js, Express, MongoDB (Mongoose), JWT, bcryptjs, Multer |
-| AI | Google Gemini API (`@google/genai`) |
-| Parsing | `pdf-parse`, `mammoth` |
-| Deployment | Vercel (frontend), Render (backend), MongoDB Atlas (database) |
+---
 
-## Screenshots
+# 🛠 Tech Stack
 
-> _Add screenshots here before publishing — suggested shots below._
+## Frontend
 
-| Landing | Upload | Dashboard |
-|---|---|---|
-| `docs/screenshots/landing.png` | `docs/screenshots/upload.png` | `docs/screenshots/dashboard.png` |
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Router DOM
+- Axios
+- jsPDF
 
-| AI Analysis | ATS Score | Interview Questions |
-|---|---|---|
-| `docs/screenshots/analysis.png` | `docs/screenshots/ats.png` | `docs/screenshots/interview.png` |
+---
 
-## Installation
+## Backend
 
-### Prerequisites
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT Authentication
+- bcryptjs
+- Multer
 
-- Node.js 18+
-- npm
-- A MongoDB instance (local, or a free [Atlas](https://www.mongodb.com/atlas) cluster)
-- A [Gemini API key](https://aistudio.google.com/apikey)
+---
 
-### 1. Clone and install
+## Artificial Intelligence
 
-```bash
-git clone <your-repo-url>
-cd ai-resume-analyzer
+- Google Gemini AI
+- Prompt Engineering
+- AI Resume Analysis
+- Resume Rewrite
+- Interview Question Generation
 
-cd backend && npm install
-cd ../frontend && npm install
-```
+---
 
-### 2. Configure environment variables
+## Resume Processing
 
-```bash
-cd backend && cp .env.example .env
-cd ../frontend && cp .env.example .env
-```
+- pdf-parse
+- Mammoth
 
-Edit `backend/.env` — see [Environment Variables](#environment-variables)
-below for what each value means.
-
-### 3. Run in development
-
-```bash
-# Terminal 1
-cd backend && npm run dev
-
-# Terminal 2
-cd frontend && npm run dev
-```
-
-Frontend: http://localhost:5173 · Backend: http://localhost:5000/api
-
-### 4. Verify
-
-```bash
-curl http://localhost:5000/api/health
-# { "success": true, "data": { "message": "API is running" } }
-```
-
-## Environment variables
-
-Full reference with inline comments lives in
-[`backend/.env.example`](backend/.env.example) and
-[`frontend/.env.example`](frontend/.env.example). Summary:
-
-**Backend**
-
-| Variable | Purpose | Example |
-|---|---|---|
-| `NODE_ENV` | Enables production hardening (hidden stack traces, fail-fast JWT check, trusted proxy) | `production` |
-| `PORT` | Server port (Render sets this automatically) | `5000` |
-| `CLIENT_URL` | Allowed CORS origin(s), comma-separated | `https://your-app.vercel.app` |
-| `MONGODB_URI` | MongoDB connection string | Atlas SRV string |
-| `JWT_SECRET` | Signing secret for JWTs — required in production | `openssl rand -hex 32` |
-| `JWT_EXPIRES_IN` | Token lifetime | `7d` |
-| `GEMINI_API_KEY` | Google Gemini API key | — |
-| `GEMINI_MODEL` | Gemini model name | `gemini-2.5-flash` |
-| `GEMINI_TIMEOUT_MS` | Timeout before an AI call is treated as failed | `60000` |
-
-**Frontend**
-
-| Variable | Purpose | Example |
-|---|---|---|
-| `VITE_API_BASE_URL` | Base URL of the backend API, including `/api` | `https://your-backend.onrender.com/api` |
-
-Neither `.env` file is committed — both are covered by the root
-`.gitignore`. Never commit real secrets.
+---
 
 ## Deployment
 
-Full step-by-step instructions (MongoDB Atlas → Gemini → Render → Vercel,
-plus CORS wiring and end-to-end verification) are in
-[`DEPLOYMENT.md`](DEPLOYMENT.md). A pre/post-deploy checklist is in
-[`PRODUCTION_CHECKLIST.md`](PRODUCTION_CHECKLIST.md).
+| Service | Platform |
+|----------|----------|
+| Frontend | Vercel |
+| Backend | Render |
+| Database | MongoDB Atlas |
 
-Quick reference:
+---
 
-| Component | Target | Root directory | Build | Start |
-|---|---|---|---|---|
-| Frontend | Vercel | `frontend` | `npm run build` | (static, `dist/`) |
-| Backend | Render | `backend` | `npm install` | `npm start` |
-| Database | MongoDB Atlas | — | — | — |
+# 📸 Screenshots
 
-## Future improvements
+> Screenshots will be updated soon.
 
-- Automated test suite (unit + integration) for services and API routes
-- Rate limiting on auth and AI-backed endpoints
-- Swap local disk storage for S3/Cloudinary (the `services/storage`
-  contract already supports this with no controller changes)
-- Structured logging (Winston/Pino) in place of the current minimal logger
-- Resume version history and comparison across re-uploads
-- Multi-language resume parsing and analysis
+Suggested screenshots:
 
-## License
+- Landing Page
+- Login Page
+- Register Page
+- Upload Resume
+- Resume Dashboard
+- AI Analysis
+- ATS Score
+- JD Matching
+- Resume Rewrite
+- Interview Questions
+- PDF Report
 
-MIT — see [`LICENSE`](LICENSE).
+---
+
+# 🚀 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/DhanushArceus05/ai-resume-analyzer.git
+```
+
+```
+cd ai-resume-analyzer
+```
+
+---
+
+## Install Backend
+
+```bash
+cd backend
+
+npm install
+```
+
+---
+
+## Install Frontend
+
+```bash
+cd frontend
+
+npm install
+```
+
+---
+
+# ▶️ Run Development
+
+## Backend
+
+```bash
+cd backend
+
+npm run dev
+```
+
+Runs on
+
+```
+http://localhost:5000
+```
+
+---
+
+## Frontend
+
+```bash
+cd frontend
+
+npm run dev
+```
+
+Runs on
+
+```
+http://localhost:5173
+```
+
+---
+
+# 📁 Project Structure
+
+```
+AI-Resume-Analyzer
+│
+├── backend
+│   ├── src
+│   │   ├── config
+│   │   ├── controllers
+│   │   ├── middleware
+│   │   ├── models
+│   │   ├── providers
+│   │   ├── routes
+│   │   ├── services
+│   │   ├── utils
+│   │   └── server.js
+│   │
+│   ├── scripts
+│   ├── package.json
+│   ├── .env.example
+│   └── README.md
+│
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── contexts
+│   │   ├── hooks
+│   │   ├── layouts
+│   │   ├── pages
+│   │   ├── services
+│   │   ├── types
+│   │   ├── utils
+│   │   └── App.tsx
+│   │
+│   ├── public
+│   ├── package.json
+│   ├── .env.example
+│   └── README.md
+│
+├── DEPLOYMENT.md
+├── PRODUCTION_CHECKLIST.md
+├── PREMIUM_RELEASE_CHECKLIST.md
+├── LICENSE
+└── README.md
+```
+
+---
+
+# 🔑 Environment Variables
+
+## Backend
+
+Create:
+
+```
+backend/.env
+```
+
+Example:
+
+```env
+NODE_ENV=development
+
+PORT=5000
+
+CLIENT_URL=http://localhost:5173
+
+MONGODB_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_jwt_secret
+
+JWT_EXPIRES_IN=7d
+
+GEMINI_API_KEY=your_gemini_api_key
+
+GEMINI_MODEL=gemini-2.5-flash
+
+GEMINI_TIMEOUT_MS=60000
+```
+
+---
+
+## Frontend
+
+Create:
+
+```
+frontend/.env
+```
+
+```env
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+
+---
+
+# 📡 API Endpoints
+
+## Authentication
+
+```
+POST /api/auth/register
+
+POST /api/auth/login
+
+GET /api/auth/me
+```
+
+---
+
+## Resume
+
+```
+POST /api/upload
+
+GET /api/report/latest
+
+DELETE /api/report
+```
+
+---
+
+## AI
+
+```
+POST /api/analyze
+
+POST /api/ats
+
+POST /api/jd-match
+
+POST /api/rewrite
+
+POST /api/interview
+```
+
+---
+
+# 🚀 Deployment
+
+## Frontend
+
+Platform
+
+```
+Vercel
+```
+
+Root Directory
+
+```
+frontend
+```
+
+Environment Variable
+
+```env
+VITE_API_BASE_URL=https://your-render-backend.onrender.com/api
+```
+
+---
+
+## Backend
+
+Platform
+
+```
+Render
+```
+
+Root Directory
+
+```
+backend
+```
+
+Build Command
+
+```bash
+npm install
+```
+
+Start Command
+
+```bash
+npm start
+```
+
+Environment Variables
+
+```env
+NODE_ENV=production
+
+CLIENT_URL=https://your-vercel-app.vercel.app
+
+MONGODB_URI=...
+
+JWT_SECRET=...
+
+JWT_EXPIRES_IN=7d
+
+GEMINI_API_KEY=...
+
+GEMINI_MODEL=gemini-2.5-flash
+
+GEMINI_TIMEOUT_MS=60000
+```
+
+---
+
+## Database
+
+Platform
+
+```
+MongoDB Atlas
+```
+
+---
+
+# 🔒 Security
+
+- JWT Authentication
+- Password Hashing (bcrypt)
+- Secure Environment Variables
+- Protected Routes
+- User Data Isolation
+- CORS Protection
+- Helmet Security Headers
+- File Upload Validation
+- Resume Size Validation
+- API Error Handling
+
+---
+
+# 🚀 Version 2 Roadmap
+
+The following features are planned for the next major release.
+
+## 🤖 AI Improvements
+
+- Multi-AI Provider Support
+  - Google Gemini
+  - OpenAI GPT
+  - Anthropic Claude
+  - Groq
+  - OpenRouter
+
+- Automatic AI Provider Fallback
+- AI Response Caching
+- Faster AI Pipeline
+- Better Prompt Optimization
+
+---
+
+## 📱 Mobile Experience
+
+- Complete Mobile Responsiveness
+- Responsive Dashboard
+- Better Card Layout
+- Better Form Layout
+- No Content Overlapping
+- Improved Tablet Support
+- Improved Small Screen Support
+
+---
+
+## 📄 Resume Features
+
+- Resume Version History
+- Compare Resume Versions
+- Resume Templates
+- Resume Builder
+- AI Cover Letter Generator
+
+---
+
+## 💼 Interview Preparation
+
+- AI Interview Answer Evaluation
+- Mock Interview Mode
+- AI Feedback
+- Interview Score
+- Communication Analysis
+
+---
+
+## 📊 Analytics
+
+- Usage Dashboard
+- AI Usage Statistics
+- Resume Improvement History
+- ATS Progress Tracking
+
+---
+
+## ☁️ Cloud Features
+
+- Cloud Resume Storage
+- Multiple Resume Management
+- Resume Sharing
+- Public Resume Link
+
+---
+
+# ⚡ Performance
+
+Current optimizations include:
+
+- Route-level code splitting
+- Lazy loading
+- React.memo optimization
+- Memoized Context API
+- Optimized local storage
+- Per-user report isolation
+- Dynamic jsPDF loading
+- Accessibility improvements
+- Production-ready build
+- Secure authentication
+- Optimized API communication
+
+---
+
+# 🏆 Project Highlights
+
+✔ Production Ready
+
+✔ Responsive Desktop UI
+
+✔ JWT Authentication
+
+✔ MongoDB Atlas
+
+✔ Google Gemini AI
+
+✔ ATS Engine
+
+✔ Job Description Matching
+
+✔ Resume Rewrite
+
+✔ Interview Question Generation
+
+✔ PDF Report Export
+
+✔ User Data Isolation
+
+✔ Production Deployment
+
+✔ Secure Environment Configuration
+
+---
+
+# 👨‍💻 Developer
+
+## Dhanush M
+
+AI Engineer • Full Stack Developer
+
+### GitHub
+
+https://github.com/DhanushArceus05
+
+### LinkedIn
+
+https://www.linkedin.com/in/dhanush-m-arceus05
+
+---
+
+# 🤝 Contributing
+
+Contributions, feature requests, and suggestions are welcome.
+
+If you discover a bug or have an idea for improving the project, feel free to open an issue or submit a pull request.
+
+---
+
+# ⭐ Support
+
+If you found this project useful:
+
+- ⭐ Star this repository
+- 🍴 Fork it
+- 📢 Share it with others
+
+Your support helps improve future releases.
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+See the [LICENSE](LICENSE) file for complete details.
+
+---
+
+# 🙏 Acknowledgements
+
+Special thanks to:
+
+- Google Gemini AI
+- MongoDB Atlas
+- Render
+- Vercel
+- React Team
+- Vite Team
+- Express.js Community
+- Open Source Community
+
+---
+
+# 🎯 Version
+
+## Current Version
+
+**AI Resume Analyzer v1.0.0**
+
+### Release Status
+
+✅ Production Ready
+
+### Last Updated
+
+July 2026
+
+---
+
+Made with ❤️ by **Dhanush M**
