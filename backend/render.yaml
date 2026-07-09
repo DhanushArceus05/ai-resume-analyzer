@@ -1,0 +1,32 @@
+# Render Blueprint (optional). Lets you provision this service via
+# "New +" -> "Blueprint" in the Render dashboard instead of clicking
+# through manual settings. Safe to ignore if you prefer the manual
+# setup described in DEPLOYMENT.md.
+services:
+  - type: web
+    name: ai-resume-analyzer-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CLIENT_URL
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: GEMINI_TIMEOUT_MS
+        value: 60000

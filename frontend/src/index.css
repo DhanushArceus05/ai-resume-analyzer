@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/*
+  Design token system -- AI Resume Analyzer
+  Concept: a resume is a human document; the product's job is to annotate
+  it the way a careful editor and an ATS parser both would. Ink (serif) is
+  the human document. Mono is the machine's markup on top of it.
+*/
+@theme {
+  --color-paper: #f7f7f5;
+  --color-paper-dim: #ececea;
+  --color-ink: #14171f;
+  --color-ink-soft: #4a4e59;
+  --color-line: #d9dad4;
+  --color-signal: #2d6a63;
+  --color-signal-soft: #e4efed;
+  --color-highlight: #d4a72c;
+  --color-highlight-soft: #faf1d8;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-highlight-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
