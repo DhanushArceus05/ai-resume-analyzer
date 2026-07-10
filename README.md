@@ -1,4 +1,20 @@
-# 🚀 AI Resume Analyzer
+<div align="center">
+
+<img src="assets/logo.png" alt="AI Resume Analyzer Logo" width="320" />
+
+# AI Resume Analyzer
+
+### Production-ready AI-powered resume analysis platform
+
+Analyze resumes from both a recruiter and ATS perspective using deterministic scoring and Google Gemini AI.
+
+<br />
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Open_Application-111827?style=for-the-badge&logo=vercel&logoColor=white)](https://ai-resume-analyzer-version-one.vercel.app)
+[![Backend API](https://img.shields.io/badge/Backend_API-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://ai-resume-analyzer-e67b.onrender.com)
+[![GitHub](https://img.shields.io/badge/Source_Code-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/DhanushArceus05/ai-resume-analyzer)
+
+<br />
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
@@ -6,23 +22,28 @@
 ![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white)
 ![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4)
 ![JWT](https://img.shields.io/badge/Auth-JWT-orange)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?logo=vercel)
+![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=black)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-An AI-powered **Resume Analyzer SaaS Platform** that evaluates resumes from both a **Recruiter's** and an **Applicant Tracking System (ATS)** perspective.
-
-The application intelligently parses resumes, performs AI-powered resume analysis, calculates ATS compatibility scores, matches resumes against job descriptions, rewrites weak resume content, generates personalized interview questions, and exports professional PDF reports.
+</div>
 
 ---
 
-# 🌐 Live Demo
+## About the Project
 
-### Frontend
+AI Resume Analyzer is a full-stack SaaS platform that evaluates resumes from both a **recruiter** and an **Applicant Tracking System** perspective.
 
-https://ai-resume-analyzer-version-one.vercel.app
+It parses PDF and DOCX resumes, generates AI-powered feedback, calculates deterministic ATS scores, compares resumes with job descriptions, rewrites weak sections, creates personalized interview questions, and exports professional PDF reports.
 
-### Backend API
+## 🌐 Live Application
 
-https://ai-resume-analyzer-e67b.onrender.com
+| Service | URL |
+|---|---|
+| Frontend | [Open AI Resume Analyzer](https://ai-resume-analyzer-version-one.vercel.app) |
+| Backend API | [Open Render API](https://ai-resume-analyzer-e67b.onrender.com) |
+| Source Code | [View GitHub Repository](https://github.com/DhanushArceus05/ai-resume-analyzer) |
 
 ---
 
@@ -270,9 +291,96 @@ utils
 
 ---
 
-# 📸 Screenshots
+# 📸 Product Screenshots
 
-> Screenshots will be updated soon.
+## Landing Page
+
+<p align="center">
+  <img src="assets/landing-page.png" alt="AI Resume Analyzer landing page" width="100%" />
+</p>
+
+---
+
+## Dashboard Overview
+
+<p align="center">
+  <img src="assets/dashboard-overview.png" alt="AI Resume Analyzer dashboard overview" width="100%" />
+</p>
+
+---
+
+## Resume Upload and Parsing
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="assets/upload-resume.png" alt="Resume upload interface" width="100%" />
+    </td>
+    <td width="50%">
+      <img src="assets/parsed-resume-preview.png" alt="Parsed resume preview" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Resume Upload</strong></td>
+    <td align="center"><strong>Parsed Resume Preview</strong></td>
+  </tr>
+</table>
+
+---
+
+## AI Analysis and ATS Scoring
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="assets/ai-analysis.png" alt="AI resume analysis" width="100%" />
+    </td>
+    <td width="50%">
+      <img src="assets/ats-score.png" alt="ATS score dashboard" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><strong>AI Resume Analysis</strong></td>
+    <td align="center"><strong>ATS Compatibility Score</strong></td>
+  </tr>
+</table>
+
+---
+
+## Job Matching and Resume Rewrite
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="assets/jd-match.png" alt="Job description matching results" width="100%" />
+    </td>
+    <td width="50%">
+      <img src="assets/resume-rewrite-result.png" alt="AI resume rewrite results" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Job Description Matching</strong></td>
+    <td align="center"><strong>AI Resume Rewrite</strong></td>
+  </tr>
+</table>
+
+---
+
+## Interview Preparation
+
+<p align="center">
+  <img src="assets/interview-questions.png" alt="Personalized interview question generator" width="100%" />
+</p>
+
+---
+
+## PDF Report
+
+<p align="center">
+  <img src="assets/pdf-report.png" alt="AI Resume Analyzer PDF report" width="80%" />
+</p>
+
+---
 
 Suggested screenshots:
 
