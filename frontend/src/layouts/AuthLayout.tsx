@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import logo from "/brand/logo.png";
 
 interface AuthLayoutProps {
   eyebrow: string;
@@ -8,13 +9,21 @@ interface AuthLayoutProps {
   children: ReactNode;
 }
 
-export const AuthLayout = ({ eyebrow, title, subtitle, children }: AuthLayoutProps) => {
+export const AuthLayout = ({
+  eyebrow,
+  title,
+  subtitle,
+  children,
+}: AuthLayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-paper text-ink">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-mono text-xs tracking-widest text-signal">[AI]</span>
-          <span className="font-display text-lg font-medium text-ink">Resume Analyzer</span>
+        <Link to="/" className="flex items-center">
+          <img
+            src={logo}
+            alt="AI Resume Analyzer"
+            className="h-12 w-auto object-contain"
+          />
         </Link>
       </div>
 
@@ -23,7 +32,11 @@ export const AuthLayout = ({ eyebrow, title, subtitle, children }: AuthLayoutPro
           <span className="font-mono text-xs uppercase tracking-widest text-signal">
             {eyebrow}
           </span>
-          <h1 className="mt-3 font-display text-3xl font-medium text-ink">{title}</h1>
+
+          <h1 className="mt-3 font-display text-3xl font-medium text-ink">
+            {title}
+          </h1>
+
           <p className="mt-2 text-sm text-ink-soft">{subtitle}</p>
 
           <div className="mt-8 rounded-2xl border border-line bg-white/60 p-6 shadow-sm">

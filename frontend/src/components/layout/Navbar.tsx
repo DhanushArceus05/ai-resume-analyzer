@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
+import logo from "/brand/logo.png";
 
 const navLinks = [
   { label: "Features", href: "/#features" },
@@ -22,9 +23,16 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-paper/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-          <span className="font-mono text-xs tracking-widest text-signal">[AI]</span>
-          <span className="font-display text-lg font-medium text-ink">Resume Analyzer</span>
+        <Link
+          to="/"
+          className="flex items-center"
+          onClick={() => setIsOpen(false)}
+        >
+          <img
+            src={logo}
+            alt="AI Resume Analyzer"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -37,6 +45,7 @@ export const Navbar = () => {
               {link.label}
             </a>
           ))}
+
           {isAuthenticated ? (
             <>
               <NavLink
@@ -45,6 +54,7 @@ export const Navbar = () => {
               >
                 Dashboard
               </NavLink>
+
               <button
                 type="button"
                 onClick={handleLogout}
@@ -61,6 +71,7 @@ export const Navbar = () => {
               >
                 Log in
               </NavLink>
+
               <NavLink
                 to="/register"
                 className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-signal"
@@ -102,6 +113,7 @@ export const Navbar = () => {
                   {link.label}
                 </a>
               ))}
+
               {isAuthenticated ? (
                 <>
                   <Link
@@ -111,6 +123,7 @@ export const Navbar = () => {
                   >
                     Dashboard
                   </Link>
+
                   <button
                     type="button"
                     onClick={handleLogout}
@@ -121,9 +134,14 @@ export const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <Link to="/login" onClick={() => setIsOpen(false)} className="text-sm text-ink-soft">
+                  <Link
+                    to="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="text-sm text-ink-soft"
+                  >
                     Log in
                   </Link>
+
                   <Link
                     to="/register"
                     onClick={() => setIsOpen(false)}
