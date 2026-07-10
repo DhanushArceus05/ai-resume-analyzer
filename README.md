@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="AI Resume Analyzer Logo" width="320" />
+<img src="assets/logo.png" alt="AI Resume Analyzer Logo" width="260" />
 
 # AI Resume Analyzer
 
